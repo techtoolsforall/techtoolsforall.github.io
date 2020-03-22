@@ -23,7 +23,7 @@
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container box_1620">
           <!-- Brand and toggle get grouped for better mobile display -->
-          <a class="navbar-brand logo_h" href="index.html"><img src="img/techtoolsforall/logo.png" alt=""></a>
+          <a class="navbar-brand logo_h" href="/"><img src="img/techtoolsforall/logo.png" alt=""></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -158,26 +158,62 @@
             <p>Want to stay updated?</p>
             <div class="" id="mc_embed_signup">
 
-              <form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-                method="get" class="form-inline">
-
-                <div class="d-flex flex-row">
-
-                  <input class="form-control" name="EMAIL" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '"
-                    required="" type="email">
-
-
-                  <button class="click-btn btn btn-default"><span class="lnr lnr-arrow-right"></span></button>
-                  <div style="position: absolute; left: -5000px;">
-                    <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
-                  </div>
-
-                  <!-- <div class="col-lg-4 col-md-4">
-                        <button class="bb-btn btn"><span class="lnr lnr-arrow-right"></span></button>
-                      </div>  -->
-                </div>
-                <div class="info"></div>
+              <form id="my-form" action="https://formspree.io/mvoqvoea" method="POST" class="form-inline" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '"
+                required="">
+                <input type="email" name="email" class="form-control" placeholder="Enter Email" />
+                <button class="click-btn btn btn-default" type="submit" id="my-form-button"><span class="lnr lnr-arrow-right"></span></button>
+                <p id="my-form-status"></p>
               </form>
+
+              <!-- Place this script at the end of the body tag -->
+
+              <script>
+                window.addEventListener("DOMContentLoaded", function() {
+
+                  // get the form elements defined in your form HTML above
+
+                  var form = document.getElementById("my-form");
+                  var button = document.getElementById("my-form-button");
+                  var status = document.getElementById("my-form-status");
+
+                  // Success and Error functions for after the form is submitted
+
+                  function success() {
+                    form.reset();
+                    button.style = "display: none ";
+                    status.innerHTML = "Thanks!";
+                  }
+
+                  function error() {
+                    status.innerHTML = "Oops! There was a problem.";
+                  }
+
+                  // handle the form submission event
+
+                  form.addEventListener("submit", function(ev) {
+                    ev.preventDefault();
+                    var data = new FormData(form);
+                    ajax(form.method, form.action, data, success, error);
+                  });
+                });
+
+                // helper function for sending an AJAX request
+
+                function ajax(method, url, data, success, error) {
+                  var xhr = new XMLHttpRequest();
+                  xhr.open(method, url);
+                  xhr.setRequestHeader("Accept", "application/json");
+                  xhr.onreadystatechange = function() {
+                    if (xhr.readyState !== XMLHttpRequest.DONE) return;
+                    if (xhr.status === 200) {
+                      success(xhr.response, xhr.responseType);
+                    } else {
+                      error(xhr.status, xhr.response, xhr.responseType);
+                    }
+                  };
+                  xhr.send(data);
+                }
+              </script>
             </div>
           </div>
         </div>
